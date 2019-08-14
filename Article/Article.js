@@ -112,3 +112,52 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+let container = document.querySelector('.articles');
+
+
+const componentMaker = arr => {
+  const div = document.createElement('div');
+  div.classList.add('article');
+
+  const title = document.createElement('h2');
+  title.textContent = arr.title;
+  div.appendChild(title);
+
+  const date = document.createElement('p');
+  date.textContent = arr.date;
+  date.classList.add('date');
+  div.appendChild(date);
+
+  const firstP = document.createElement('p');
+  firstP.textContent = arr.firstParagraph;
+  div.appendChild(firstP);
+
+  const secondP = document.createElement('p');
+  secondP.textContent = arr.secondParagraph;
+  div.appendChild(secondP);
+
+  const thirdP = document.createElement('p');
+  thirdP.textContent = arr.thirdParagraph;
+  div.appendChild(thirdP);
+
+  const span = document.createElement('span');
+  span.textContent = 'Expand';
+  span.classList.add('expandButton');
+  span.addEventListener('click', e => {
+    div.classList.toggle('article-open');
+  });
+  div.appendChild(span);
+  return div;
+};
+
+data.push({
+  title: 'React is the way!',
+  date: 'August 8, 2019',
+  firstParagraph: 'Why use boring vanilla JS when React exists??',
+  secondParagraph: 'Well you\'ll need to understand components first!',
+  thirdParagraph: 'But after that, hooray! React is the way!'
+});
+
+data.forEach(cur => {
+  container.appendChild(componentMaker(cur));
+});
